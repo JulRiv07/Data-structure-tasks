@@ -3,6 +3,110 @@
 
 using namespace std;
 
+void Exercise1(){
+    int option;
+
+    Vector<int> testVector;
+    testVector.generateRandomVector(10, 0, 200);
+
+    cout << "Do you want to (1. insert or 2. erase): ";
+    cin >> option; 
+
+    if(option == 1){
+
+        /*
+            The algorithm for insert:
+
+            void insert(unsigned int index, T element){
+                unsigned int newCapacity = capacity_ + 1;
+                T* newStorage = new T[newCapacity];
+
+                unsigned int j = 0;
+                for(unsigned int i = 0; i < capacity_; i++){
+
+                if (j == index){
+                        newStorage[j] = element;
+                        j++;
+                }
+
+                newStorage[j] = storage_[i];
+                j++;
+                }
+
+                delete[] storage_;
+                storage_ = newStorage;
+                capacity_ = newCapacity;
+            }
+
+            Observations: 
+                The dominant operation is the loop and the memory allocation, 
+                both of which take O(n) time
+                so the algorithm have a Time Complexity of: O(n)
+            
+        */
+
+        unsigned int position;
+        int element;
+        cout << "The vector we will work with is: ";
+        testVector.print();
+
+        cout << "Enter the element you want to add: ";
+        cin >> element; 
+        cout << "Enter the position where you want to add it: ";
+        cin >> position;  
+        
+        testVector.insert(position, element);
+        cout << "The modified vector is: ";
+        testVector.print();
+
+    } else if (option == 2) {
+
+        /*
+            The algorithm for erase:
+
+            void erase(unsigned int index){  
+                T* newStorage = new T[capacity_]; 
+                unsigned int j = 0;
+                for (unsigned int i = 0; i < size_; i++) 
+                {
+                    if(i == index){  
+                        i++;
+                        newStorage[j] = storage_[i]; 
+                        j++;
+                    } else { 
+                        newStorage[j] = storage_[i]; 
+                        j++; 
+                    }
+                } 
+
+                size_--; 
+                delete[] storage_;
+                storage_ = newStorage;
+            }
+
+            Observations:
+                The dominant operations are the memory allocation and the loop, 
+                both of which take O(n) time.
+                so the algorithm have a Time Complexity of: O(n)
+            
+
+        */
+
+        unsigned int position;
+        cout << "The vector we will work with is: ";
+        testVector.print();
+
+        cout << "Enter the position where you want to erase element: ";
+        cin >> position;  
+        
+        testVector.erase(position);
+        cout << "The modified vector is: ";
+        testVector.print();
+
+    } else cout << "Incorrect option!";
+
+}
+
 /* It works!!
 
     Vector<int> myVector;
@@ -34,46 +138,4 @@ using namespace std;
     Vector<int> emptyVector;
     emptyVector.pop_back(); // Should crash!
 */
-
-void testExercise1(){
-    int option;
-
-    Vector<int> testVector;
-    testVector.generateRandomVector(10, 0, 200);
-
-    cout << "Do you want to (1. insert or 2. erase): ";
-    cin >> option; 
-
-    if(option == 1){
-
-        unsigned int position;
-        int element;
-        cout << "The vector we will work with is: ";
-        testVector.print();
-
-        cout << "Enter the element you want to add: ";
-        cin >> element; 
-        cout << "Enter the position where you want to add it: ";
-        cin >> position;  
-        
-        testVector.insert(position, element);
-        cout << "The modified vector is: ";
-        testVector.print();
-
-    } else if (option == 2) {
-
-        unsigned int position;
-        cout << "The vector we will work with is: ";
-        testVector.print();
-
-        cout << "Enter the position where you want to erase element: ";
-        cin >> position;  
-        
-        testVector.erase(position);
-        cout << "The modified vector is: ";
-        testVector.print();
-        
-    } else cout << "Incorrect option!";
-
-}
 

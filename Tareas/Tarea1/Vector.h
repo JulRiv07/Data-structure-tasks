@@ -51,48 +51,49 @@ public:
         size_++;
     }
     
-    // Insert function for the "Exercise 1"...
-    void insert(unsigned int index, T element){
-        unsigned int newCapacity = capacity_ + 1;
-        T* newStorage = new T[newCapacity];
+    // Insert: function for the "Exercise 1"...
+    void insert(unsigned int index, T element){ // create the insert function
+        unsigned int newCapacity = capacity_ + 1; //change capacity for avoid problems for the avoid problems with it later
+        // +1 because will only be added one element to the vector
+        T* newStorage = new T[newCapacity]; //Allocating memory for a new Vector of size newCapacity
 
-        unsigned int j = 0;
-        for(unsigned int i = 0; i < capacity_; i++){
+        unsigned int j = 0; // Create a new variable for use in the loop later
+        for(unsigned int i = 0; i < capacity_; i++){ // loop running through the vector
 
-           if (j == index){
-                newStorage[j] = element;
-                j++;
+           if (j == index){ // If j is equal to index so in this position add the element here
+                newStorage[j] = element; // add the element to new Vector
+                j++; // j increment in 1, because this position in j it's a ahead of i
            }
 
-           newStorage[j] = storage_[i];
-           j++;
-        }
+           newStorage[j] = storage_[i]; // Else newStorage in the j position is equal to the element in storage_ in i position
+           j++; // Increment j in 1
+        } 
 
-        delete[] storage_;
-        storage_ = newStorage;
-        capacity_ = newCapacity;
-    }
-    //End of the function "insert"
+        delete[] storage_; // Deallocating memory of storage_
+        storage_ = newStorage; // change so storage_ is equal to newStorage
+        capacity_ = newCapacity; // change so capacity_ is equal to newCapacity
+    } //End of the function "insert"
 
-    void erase(unsigned int index){
-        T* newStorage = new T[capacity_];
-        unsigned int j = 0;
-        for (unsigned int i = 0; i < size_; i++)
+    // Erase: function for the "Exercise 1"...
+    void erase(unsigned int index){  // create the erase function
+        T* newStorage = new T[capacity_]; //Allocating memory for a new Vector of size capacity_
+        unsigned int j = 0; // Create a new variable for use in the loop later
+        for (unsigned int i = 0; i < size_; i++) // loop running through the vector
         {
-            if(i == index){
-                i++;
-                newStorage[j] = storage_[i];
-                j++;
-            } else {
-                newStorage[j] = storage_[i];
-                j++;
+            if(i == index){  // If i is equal to index so erase the element in this position
+                i++; // Increment i in 1
+                newStorage[j] = storage_[i]; //Add the next element in newStorage and jump the previous element
+                j++; // Increment j in 1
+            } else { 
+                newStorage[j] = storage_[i]; // Else newStorage in the j position is equal to the element in storage_ in i position
+                j++; // Increment j in 1
             }
-        }
+        } 
 
-        size_--;
-        delete[] storage_;
-        storage_ = newStorage;
-    }
+        size_--; // Subtract one to size
+        delete[] storage_; // Deallocating memory of storage_
+        storage_ = newStorage; // change so storage_ is equal to newStorage
+    } //End of the function "erase"
 
     void print() {
         for (unsigned int i = 0; i < size_; i++) {
