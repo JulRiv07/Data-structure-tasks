@@ -13,8 +13,42 @@ private:
     unsigned int capacity_;
     unsigned int size_;
 
-    void resize() {
-        cout << "Resize" << endl;
+    /* 
+        Resizes policies  :
+            P1: capacity_ + 1;
+            P2: capacity_ + 2;
+            P3: capacity_ * 1.5;
+            P4: capacity_ * 2;
+    
+    */
+    
+    void resizeP1() {
+        unsigned int newCapacity = capacity_ + 1;
+        T* newStorage = new T[newCapacity];
+
+        for (unsigned int i = 0; i < size_; i++) {
+            newStorage[i] = storage_[i];
+        }
+
+        delete[] storage_;
+        storage_ = newStorage;
+        capacity_ = newCapacity;
+    }
+
+    void resizeP2() {
+        unsigned int newCapacity = capacity_ + 2;
+        T* newStorage = new T[newCapacity];
+
+        for (unsigned int i = 0; i < size_; i++) {
+            newStorage[i] = storage_[i];
+        }
+
+        delete[] storage_;
+        storage_ = newStorage;
+        capacity_ = newCapacity;
+    }
+
+    void resizeP3() {
         unsigned int newCapacity = capacity_ * 1.5;
         T* newStorage = new T[newCapacity];
 
@@ -27,7 +61,21 @@ private:
         capacity_ = newCapacity;
     }
 
+    void resizeP4() {
+        unsigned int newCapacity = capacity_ * 2;
+        T* newStorage = new T[newCapacity];
+
+        for (unsigned int i = 0; i < size_; i++) {
+            newStorage[i] = storage_[i];
+        }
+
+        delete[] storage_;
+        storage_ = newStorage;
+        capacity_ = newCapacity;
+    }
+
 public:
+
     Vector() {
         capacity_ = 10;
         storage_ = new T[capacity_];
@@ -43,14 +91,47 @@ public:
         size_ = capacity_;
     }
 
-    void push_back(const T& elem) {
+    unsigned int size() const{
+        return size_;
+    }
+
+    unsigned int capacity() const{
+        return capacity_;
+    }
+
+    void push_back1(const T& elem) {
         if (size_ == capacity_) {
-            resize();
+            resizeP1();
         }
         storage_[size_] = elem;
         size_++;
     }
-    
+
+    void push_back2(const T& elem) {
+        if (size_ == capacity_) {
+            resizeP2();
+        }
+        storage_[size_] = elem;
+        size_++;
+    }
+
+    void push_back3(const T& elem) {
+        if (size_ == capacity_) {
+            resizeP3();
+        }
+        storage_[size_] = elem;
+        size_++;
+    }
+
+    void push_back4(const T& elem) {
+        if (size_ == capacity_) {
+            resizeP4();
+        }
+        storage_[size_] = elem;
+        size_++;
+    }
+
+
     // Task 1...
 
     // Insert: function for the "Exercise 1"...
@@ -127,7 +208,7 @@ public:
 
 
     // End of task 
-    
+
     void print() {
         for (unsigned int i = 0; i < size_; i++) {
             cout << " " << storage_[i];
@@ -140,7 +221,7 @@ public:
         uniform_int_distribution<T> dist(minValue, maxValue);
     
         for (int i = 0; i < n; i++) {
-            push_back(dist(gen));
+            push_back1(dist(gen));
         }
     }
 

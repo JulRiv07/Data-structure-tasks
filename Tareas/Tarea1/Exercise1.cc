@@ -57,6 +57,7 @@ void Exercise1(){
         testVector.insert(position, element);
         cout << "The modified vector is: ";
         testVector.print();
+        cout << endl;
 
     } else if (option == 2) {
 
