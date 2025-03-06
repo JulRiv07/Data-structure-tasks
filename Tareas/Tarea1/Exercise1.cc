@@ -42,7 +42,6 @@ void Exercise1(){
                 The dominant operation is the loop and the memory allocation, 
                 both of which take O(n) time
                 so the algorithm have a Time Complexity of: O(n)
-            
         */
 
         unsigned int position;
@@ -89,12 +88,12 @@ void Exercise1(){
                 both of which take O(n) time.
                 so the algorithm have a Time Complexity of: O(n)
             
-
         */
 
         unsigned int position;
         cout << "The vector we will work with is: ";
         testVector.print();
+        cout << endl;
 
         cout << "Enter the position where you want to erase element: ";
         cin >> position;  
@@ -102,6 +101,7 @@ void Exercise1(){
         testVector.erase(position);
         cout << "The modified vector is: ";
         testVector.print();
+        cout << endl;
 
     } else cout << "Incorrect option!";
 

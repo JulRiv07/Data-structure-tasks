@@ -51,6 +51,8 @@ public:
         size_++;
     }
     
+    // Task 1...
+
     // Insert: function for the "Exercise 1"...
     void insert(unsigned int index, T element){ // create the insert function
         unsigned int newCapacity = capacity_ + 1; //change capacity for avoid problems for the avoid problems with it later
@@ -95,11 +97,41 @@ public:
         storage_ = newStorage; // change so storage_ is equal to newStorage
     } //End of the function "erase"
 
+
+    // removeDuplicates: function for the "Exercise 2"...
+    void removeDuplicates(){ // create the remove duplicates function
+
+        T* newStorage = new T[capacity_]; //Allocating memory for a new Vector of size newCapacity
+        unsigned int newSize = 0;  // Create a variable that save the new size because this will change in the process
+        bool duplicate; // Variable type boolean for the comprobations
+
+        for (unsigned int i = 0; i < size_; i++){  // Loop running through the vector
+            duplicate = false; // The variable is initialized in false
+            for (unsigned int j = 0; j < newSize; j++){ // Loop for comnprobations of duplicates in the vector
+                if (storage_[i] == storage_[j]){ // If the element in storage_[i] is the same of storage[j]so is duplicate
+                    duplicate = true; // Since the element is duplicated, the variable must be changed to true
+                }
+            }
+
+            if(!duplicate){ 
+                newStorage[newSize++] = storage_[i]; // If duplicate is false, add the element to newStorage
+            }
+
+        } 
+
+        delete[] storage_; // Deallocating memory of storage_
+        storage_ = newStorage; // change so storage_ is equal to newStorage
+        size_ = newSize; // change so size_ is equal to newSize
+
+    } // End of the function "removeDuplicates"
+
+
+    // End of task 
+    
     void print() {
         for (unsigned int i = 0; i < size_; i++) {
             cout << " " << storage_[i];
         }
-        cout << endl;
     }
 
     void generateRandomVector(int n, T minValue, T maxValue) {
@@ -110,6 +142,23 @@ public:
         for (int i = 0; i < n; i++) {
             push_back(dist(gen));
         }
+    }
+
+    void generateRandomVectorWithDuplicates(int n, T minValue, T maxValue) {
+
+        generateRandomVector(n, minValue, maxValue); 
+
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<int> indexDist(0, size_ - 1); 
+
+        int numDuplicates = n / 3;
+        for (int i = 0; i < numDuplicates; i++) {
+            int sourceIndex = indexDist(gen);
+            int targetIndex = indexDist(gen);
+            storage_[targetIndex] = storage_[sourceIndex];
+        }
+
     }
 };
 
