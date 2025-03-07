@@ -3,11 +3,20 @@
 #include "Exercise1.cc"
 #include "Exercise2.cc"
 #include "Exercise3.cc"
-
+#include "Exercise4.cc"
+#include "Exercise5.cc"
 
 int main() {
 
     int opc;
+
+    cout << "----------Exercises on vectors----------"; 
+    cout << "Options:" << endl;
+    cout << "1. Insert and erase" << endl;
+    cout << "2. Removing duplicates" << endl;
+    cout << "3. Dynamic Array Resizing Analysis" << endl;
+    cout << "4. Implementing a Stack Using a Vector" << endl;
+    cout << "5. Merge sorted vectors" << endl;
 
     do
     {   
@@ -30,7 +39,7 @@ int main() {
                 ShellExecuteA(0, "open", url, NULL, NULL, SW_SHOWNORMAL);
             }
         } else if(opc == 4){
-            
+            Exercise4();
         } else if(opc == 5){
             
         } else cout << "Invalid option!" << endl;

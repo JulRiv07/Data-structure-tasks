@@ -1,3 +1,13 @@
+/*
+ ---------------------------------------------------------------Removing Duplicates:---------------------------------------------------------------
+    
+    > Write a function that takes a vector of integers and removes all duplicate elements, 
+      preserving the original order of the remaining elements.
+    > Analyze the time complexity of your solution.
+    > Consider the following non-extensive program to test your implementation:
+
+*/
+
 #include <iostream> // Include the library
 #include "Vector.h" 
 

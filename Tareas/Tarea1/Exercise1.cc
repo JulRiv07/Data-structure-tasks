@@ -1,3 +1,16 @@
+/*
+    ---------------------------------------------------------------Insert and Erase:---------------------------------------------------------------
+    
+    >Extend your vector implementation to include:
+        > insert(index, element): Insert an element at a specific index.
+        > erase(index): Remove the element at a specific index.
+    > Analyze the time complexity of these operations.
+    > Consider the following program to test your implementations. 
+      Be careful, it just tests some functionalities and is not intended to be extensive.
+
+*/
+
+
 #include <iostream> // Include the library
 #include "Vector.h"
 

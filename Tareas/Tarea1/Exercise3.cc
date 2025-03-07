@@ -1,3 +1,12 @@
+/*  
+    ---------------------------------------------------------Dynamic Array Resizing Analysis:---------------------------------------------------------
+    
+    > Write a program that pushes a large amount of random numbers into your vector implementation. 
+      Display the size and capacity of the vector after every 1000 insertions. Graph the results, 
+      and analyze the growth of the capacity. Perform this experiment with the growth policies considered in class.
+
+*/
+
 #include <iostream>
 #include <cassert>
 #include <fstream>

@@ -131,6 +131,25 @@ public:
         size_++;
     }
 
+    void pop_back() { 
+        if (size_ > 0) { 
+            size_--;
+        }
+    }
+
+    bool empty_(){
+        return size_ == 0;
+    }
+
+    T back() {
+        if (!empty_()) {
+            return storage_[size_ - 1];
+        } else {
+            throw out_of_range("Error: The stack is empty!");
+        }
+    }
+
+
 
     // Task 1...
 
