@@ -11,21 +11,21 @@
 */
 
 
-#include <iostream> // Include the library
-#include "Vector.h"
+#include <iostream> // Include the standard input/output stream library for console operations.
+#include "Vector.h"      // Include the custom Vector class definition from the "Vector.h" header file.
 
-using namespace std;
+using namespace std; 
 
-void Exercise1(){
-    int option;
+void Exercise1(){ // Function to execute 
+    int option; // Variable for the user option
 
-    Vector<int> testVector;
-    testVector.generateRandomVector(10, 0, 200);
+    Vector<int> testVector; // Make the test vector
+    testVector.generateRandomVector(10, 0, 200); // Generate the random vector with 10 elements 
 
-    cout << "Do you want to (1. insert or 2. erase): ";
-    cin >> option; 
+    cout << "Do you want to (1. insert or 2. erase): "; // options of the exercise
+    cin >> option;  // Read the option of the user 
 
-    if(option == 1){
+    if(option == 1){ // if user selection one option
 
         /*
             The algorithm for insert:
@@ -57,23 +57,23 @@ void Exercise1(){
                 so the algorithm have a Time Complexity of: O(n)
         */
 
-        unsigned int position;
-        int element;
+        unsigned int position; // Variable for the position where to insert
+        int element; // Variable for lement to insert
         cout << "The vector we will work with is: ";
-        testVector.print();
+        testVector.print(); // print the vector generate
 
-        cout << "Enter the element you want to add: ";
-        cin >> element; 
+        cout << endl << "Enter the element you want to add: "; 
+        cin >> element;  // Read the element for the insert in the vector 
         cout << "Enter the position where you want to add it: ";
-        cin >> position;  
+        cin >> position;  // Read the position for the insert in the vector 
         
-        testVector.insert(position, element);
+        testVector.insert(position, element); // Use function insert in testvector 
         cout << "The modified vector is: ";
-        testVector.print();
-        cout << endl;
+        testVector.print(); // Print the modified vector 
+        cout << endl; 
 
-    } else if (option == 2) {
-
+    } else if (option == 2) { // If the option is 2
+ 
         /*
             The algorithm for erase:
 
@@ -104,20 +104,20 @@ void Exercise1(){
             
         */
 
-        unsigned int position;
+        unsigned int position; // Variable for the position where to insert
         cout << "The vector we will work with is: ";
-        testVector.print();
+        testVector.print(); // print the vector generate
         cout << endl;
 
-        cout << "Enter the position where you want to erase element: ";
-        cin >> position;  
+        cout << "Enter the position where you want to erase element: "; 
+        cin >> position; // Read the position for erase in the vector 
         
-        testVector.erase(position);
-        cout << "The modified vector is: ";
-        testVector.print();
+        testVector.erase(position); // Use function erase in testvector 
+        cout << "The modified vector is: "; 
+        testVector.print(); // Print the modified vector 
         cout << endl;
 
-    } else cout << "Incorrect option!";
+    } else cout << "Incorrect option!"; // Say to the user that the option isn't correct
 
 }
 

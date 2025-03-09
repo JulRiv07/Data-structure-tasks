@@ -10,7 +10,7 @@ int main() {
 
     int opc;
 
-    cout << "----------Exercises on vectors----------"; 
+    cout << "----------Exercises on vectors----------" << endl; 
     cout << "Options:" << endl;
     cout << "1. Insert and erase" << endl;
     cout << "2. Removing duplicates" << endl;
@@ -41,7 +41,7 @@ int main() {
         } else if(opc == 4){
             Exercise4();
         } else if(opc == 5){
-            
+            Exercise5();
         } else cout << "Invalid option!" << endl;
 
     } while (opc != 0);

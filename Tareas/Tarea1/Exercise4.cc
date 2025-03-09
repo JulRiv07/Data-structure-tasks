@@ -6,9 +6,8 @@
 
 */
 
-#include <iostream>
-#include "Vector.h"
-
+#include <iostream> // Include the standard input/output stream library for console operations.
+#include "Vector.h" // Include the custom Vector class definition from the "Vector.h" header file.
 using namespace std;
 
 
@@ -20,14 +19,14 @@ using namespace std;
 
     The ususal operations are: 
         push(element) → Inserts an element into the top of the stack.
-        pop() → Deletes the item at the top of the stack.
+        pop() → Deletes the item at the top of the stack. 
         top() or peek() → Returns the element at the top without deleting it.
         isEmpty() → Returns true if the stack is empty.
 
         Example:
 
         | h  |            | m  |
-        | o  | push(m)    | h  | top (m)
+        | o  | push(m)    | h  | top ()
         | l  | ------>    | o  | -------> m
         | a  |            | l  | 
         -----             | a  |
@@ -35,76 +34,69 @@ using namespace std;
 
 */
 
-template <typename T>
-class createStack {
-private:
-    Vector<T> Stack;
+template <typename T> //Type of data that wila hsve the stack
+class createStack { //Class stack 
+private: 
+    Vector<T> Stack; // Create stack using the Vector class
 
 public:
-    createStack() {}
+    createStack() {} //Constructor of stack 
 
-    void push(T element) {
-        Stack.push_back1(element);
+    void push(T element) { // push function: Inserts an element into the top of the stack.
+        Stack.push_back1(element); // Using push_back this function is implemented on the stack
     }
 
-    void pop() {
-        if (!Stack.empty_()) {
-            Stack.pop_back();
+    void pop() { // pop function: Deletes the item at the top of the stack.
+        if (!Stack.empty_()) { //Verify that the stack is not empty
+            Stack.pop_back(); // Using pop_back this function is implemented on the stack 
         } else {
-            cout << "The stack is empty!" << endl;
+            cout << "The stack is empty!" << endl; // Say to the user that the stack is empty 
         }
     }
 
-    T top() {
-        if (!Stack.empty_()) {
-            return Stack.back();
+    T top() { //Top function: Returns the element at the top without deleting it.
+        if (!Stack.empty_()) { //Verify that the stack is not empty
+            return Stack.back(); // The function return the valor in the top using the back function
         } else {
-            throw out_of_range("Error: The stack is empty!");
+            cout << "Error: The stack is empty!" << endl; // Say to the user that the stack is empty
+            return 0;
         }
     }
 
-    bool isEmpty() {
-        return Stack.empty_();
+    bool isEmpty() { // function isEmpty: return true if the stack is empty.
+        return Stack.empty_(); // Test the stack for review if is empty
     }
 
-    void printStack() {
-        if (Stack.empty_()) {
-            cout << "The stack is empty!" << endl;
+    void printStack() { // printStack function: Print the stack 
+        if (Stack.empty_()) { 
+            cout << "The stack is empty!" << endl; // Mensagge of error
             return;
         }
-
         cout << "Stack elements: ";
-        Vector<T> tempStack = Stack;
-        while (!tempStack.empty_()) {
-            cout << tempStack.back() << " ";
-            tempStack.pop_back();
+        for (unsigned int i = 0; i < Stack.Size(); i++) {
+            cout << Stack.at(i) << " ";
         }
         cout << endl;
     }
 };
 
-void Exercise4() {
+void Exercise4() { 
+    /*
+        Testintg the code with some valors
+    
+    */
+    createStack<int> stack; // Create a stack using the cecct
+    stack.push(35); // Uso de la función de empuje para un rasgo
+    stack.push(22); // " "
+    stack.push(18); // " "
+    stack.push(47) ;// " "
 
-    createStack<int> stack;
-    stack.push(35);
-    stack.push(22);
-    stack.push(18);
-    stack.push(47);
+    stack.printStack(); // Print actually stack
 
-    stack.printStack();
+    cout << "Now will use the pop function:  " << endl;
+    stack.pop();   // Delete using pop 
+    stack.printStack();; // Print actually stack
+    cout << "Now will use the top function:  " << endl;
+    cout << stack.top();   // Return first element using pop 
 
-    cout << "Now will use the pop function: ";
-    stack.pop();
-    stack.printStack();
-
-    cout << "Now will use the top function: ";
-    cout << stack.top() << endl;
-
-    // Erase all elements
-    stack.pop();
-    stack.pop();
-    stack.pop();
-
-    cout << "Is the stack empty?: ";
-    cout << (stack.isEmpty() ? "Yes" : "No") << endl;
 }

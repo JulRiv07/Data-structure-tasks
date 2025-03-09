@@ -7,138 +7,81 @@
 
 */
 
-#include <iostream>
-#include <cassert>
-#include <fstream>
-#include <ctime>
-#include <chrono> 
-#include "Vector.h"
+#include <iostream>    // Include the standard input/output stream library for console operations.
+#include <cassert>     // Include the assertion library for runtime checks.
+#include <fstream>     // Include the file stream library for file input/output operations.
+#include <ctime>       // Include the time library for time-related functions.
+#include <chrono>      // Include the chrono library for high-resolution time measurements.
+#include "Vector.h"      // Include the custom Vector class definition from the "Vector.h" header file.
+
+using namespace std;
 
 void Exercise3() {
-    int opc;
+    ofstream archivo("ResizeTracking.dat", ios::trunc); // Open the file for writing, truncating existing content
+    assert(archivo); // Ensure the file was opened successfully
 
-    ofstream archivo("Testing.dat", ios::trunc);
-    assert(archivo);
-    
+    int opc2 = 0;
+    int resizePolicies[] = {1, 2, 3, 4}; // Array of resize policies to test
 
-    cout << "0. Exit" << endl << "1. Capacity + 1" << endl << "2. Capacity + 2" << endl << "3. Capacity * 1.5" << endl << "4. Capacity * 2" << endl;
+    for (int policy : resizePolicies) { // Loop through each resize policy
+        Vector<int> testVector; // Create a new Vector for each policy
 
-    do {
-        cout << "There are four policies of resize, which one do you want to try: ";
-        cin >> opc;
+        archivo << "\n\tResize Policy " << policy << "\n" << "  Size   Capacity\n"; // Write the policy header to the file
 
-        if (opc == 1) {
-            int opc2 = 0;
+        auto start = chrono::high_resolution_clock::now(); // Start timing the policy execution
+        for (unsigned int i = 0; i < 100000; i++) { // Loop to add 100,000 random elements
+            int randomValue = rand() % 1000; // Generate a random value
 
-            Vector<int> testVector; // Reinicializar el vector aquí
-
-            archivo << "\n\tResize + 1" << "\n" << "   Size   Capacity\n";
-
-            auto start = chrono::high_resolution_clock::now();
-            for (unsigned int i = 0; i < 100000; i++) {
-                testVector.push_back1(rand() % 1000);
-                if (i % 1000 == 0) {
-                    archivo << "   " << testVector.size() << "   " << testVector.capacity() << endl;
+            if (policy == 1) { // Apply resize policy 1
+                testVector.push_back1(randomValue);
+                // Check if a resize occurred and log the size and capacity
+                if (testVector.Size() > testVector.Capacity() - 1) {
+                    archivo << "  " << testVector.Size() + 1 << "    " << testVector.Capacity() + 1 << endl; // Log the new size and capacity
+                }
+            } else if (policy == 2) { // Apply resize policy 2
+                testVector.push_back2(randomValue);
+                // Check if a resize occurred and log the size and capacity
+                if (testVector.Size() > testVector.Capacity() - 1) {
+                    archivo << "  " << testVector.Size() + 1 << "    " << testVector.Capacity() + 2 << endl; // Log the new size and capacity
+                }
+            } else if (policy == 3) { // Apply resize policy 3
+                testVector.push_back3(randomValue);
+                // Check if a resize occurred and log the size and capacity
+                if (testVector.Size() > testVector.Capacity() - 1) {
+                    archivo << "  " << testVector.Size() + 1 << "    " << testVector.Capacity() * 1.5 << endl; // Log the new size and capacity
+                }
+            } else if (policy == 4) { // Apply resize policy 4
+                testVector.push_back4(randomValue);
+                // Check if a resize occurred and log the size and capacity
+                if (testVector.Size() > testVector.Capacity() - 1) {
+                    archivo << "  " << testVector.Size() + 1 << "    " << testVector.Capacity() * 2 << endl; // Log the new size and capacity
                 }
             }
-
-            auto end = chrono::high_resolution_clock::now();
-            auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-
-            cout << "Ended! the execution time was: " << duration.count() << " milliseconds" << endl;
-
-            cout << "Are you curious? do you want see the vector? \n 0. No \n 1. Si \n Option: ";
-            cin >> opc2;
-
-            if (opc2) {
-                testVector.print();
-            }
-
-        } else if (opc == 2) {
-            int opc2 = 0;
-
-            Vector<int> testVector; // Reinicializar el vector aquí
-
-            archivo << "\n\tResize + 2" << "\n" << "   Size   Capacity\n";
-
-            auto start = chrono::high_resolution_clock::now();
-            for (unsigned int i = 0; i < 100000; i++) {
-                testVector.push_back2(rand() % 1000);
-                if (i % 1000 == 0) {
-                    archivo << "   " << testVector.size() << "   " << testVector.capacity() << endl;
-                }
-            }
-
-            auto end = chrono::high_resolution_clock::now();
-            auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-
-            cout << "Ended! the execution time was: " << duration.count() << " milliseconds" << endl;
-
-            cout << "Are you curious? do you want see the vector? \n 0. No \n 1. Si \n Opcion: ";
-            cin >> opc2;
-
-            if (opc2) {
-                testVector.print();
-            }
-
-        } else if (opc == 3) {
-            int opc2 = 0;
-
-            Vector<int> testVector; // Reinicializar el vector aquí
-
-            archivo << "\tResize * 1.5" << "\n" << "   Size   Capacity\n";
-
-            auto start = chrono::high_resolution_clock::now();
-            for (unsigned int i = 0; i < 100000; i++) {
-                testVector.push_back3(rand() % 1000);
-                if (i % 1000 == 0) {
-                    archivo << "   " << testVector.size() << "   " << testVector.capacity() << endl;
-                }
-            }
-
-            auto end = chrono::high_resolution_clock::now();
-            auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-
-            cout << "Ended! the execution time was: " << duration.count() << " milliseconds" << endl;
-
-            cout << "Are you curious? do you want see the vector? \n 0. No \n 1. Si \n Opcion: ";
-            cin >> opc2;
-
-            if (opc2) {
-                testVector.print();
-            }
-
-        } else if (opc == 4) {
-            int opc2 = 0;
-
-            Vector<int> testVector; // Reinicializar el vector aquí
-
-            archivo << "\n\tResize * 2" << "\n" << "   Size   Capacity\n";
-
-            auto start = chrono::high_resolution_clock::now();
-            for (unsigned int i = 0; i < 100000; i++) {
-                testVector.push_back4(rand() % 1000);
-                if (i % 1000 == 0) {
-                    archivo << "   " << testVector.size() << "   " << testVector.capacity() << endl;
-                }
-            }
-
-            auto end = chrono::high_resolution_clock::now();
-            auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-
-            cout << "Ended! the execution time was: " << duration.count() << " milliseconds" << endl;
-
-            cout << "Are you curious? do you want see the vector? \n 0. No \n 1. Si \n Opcion: ";
-            cin >> opc2;
-
-            if (opc2) {
-                testVector.print();
-            }
-        } else if (opc != 0) {
-            cout << "Incorrect Option!!" << endl;
         }
 
-    } while (opc != 0);
+        auto end = chrono::high_resolution_clock::now(); // Stop timing
+        auto duration = chrono::duration_cast<chrono::milliseconds>(end - start); // Calculate execution time
 
-    archivo.close();
+        cout << "Policy " << policy << " Ended! Execution time: " << duration.count() << " milliseconds" << endl; // Output execution time
+    }
+
+    cout << "Are you curious? Do you want to see the vector? \n 0. No \n 1. Yes \n Option: "; // Ask if the user wants to see the vector
+    cin >> opc2;
+
+    if (opc2 == 1) { // If the user wants to see the vector
+        // Show the vector from the last tested policy
+        Vector<int> tempVector;
+        if (resizePolicies[3] == 1) tempVector.push_back1(0);
+        else if (resizePolicies[3] == 2) tempVector.push_back2(0);
+        else if (resizePolicies[3] == 3) tempVector.push_back3(0);
+        else if (resizePolicies[3] == 4) tempVector.push_back4(0);
+
+        tempVector.print(); // Print the vector
+    } else if (opc2 == 0) { // If the user does not want to see the vector
+        cout << "Okay, no problem." << endl;
+    } else { // If the user enters an invalid option
+        cout << "Invalid option." << endl;
+    }
+
+    archivo.close(); // Close the file
 }

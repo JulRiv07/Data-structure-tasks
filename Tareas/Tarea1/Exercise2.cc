@@ -8,8 +8,8 @@
 
 */
 
-#include <iostream> // Include the library
-#include "Vector.h" 
+#include <iostream> // Include the standard input/output stream library for console operations.
+#include "Vector.h" // Include the custom Vector class definition from the "Vector.h" header file.
 
 using namespace std;
 
@@ -52,16 +52,16 @@ void Exercise2(){
                 so the algorithm have a Time Complexity of: O(n^2)
         */
 
-    Vector<int> testVector;
-    testVector.generateRandomVectorWithDuplicates(10, 0, 200);
+    Vector<int> testVector; // Initialize the test vector 
+    testVector.generateRandomVectorWithDuplicates(10, 0, 200); // Fill the vector with random data (always the vector have duplicates elements)
 
-    cout << "The vector we will work with is: { " ;
-    testVector.print();
-    cout << " }" << endl;
+    cout << "The vector we will work with is: { " ; 
+    testVector.print(); // Print the vector generate
+    cout << " }" << endl; 
 
-    cout << "The modified vector is: {";
-    testVector.removeDuplicates();
-    testVector.print();
+    cout << "The modified vector is: {"; 
+    testVector.removeDuplicates(); //
+    testVector.print(); // Print the vector modified
     cout << " }";
     cout << endl;
 
